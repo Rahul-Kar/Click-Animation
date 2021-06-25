@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>vanila javaScript project</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <section></section>
+    <audio src="sound.wav" class="sound"></audio>
+    <script>
+    const body = document.querySelector('body')
+    document.addEventListener('click', (e) => {
+
+        // Add bullets
+        let bullet = document.createElement('span')
+        bullet.classList.add('bullet')
+        let x = e.offsetX
+        let y = e.offsetY
+        bullet.style.left = `${x}px`
+        bullet.style.top = `${y}px`
+        body.appendChild(bullet)
+
+        //Add sound
+        let sound = document.querySelector('.sound')
+        sound.play()
+
+        //Add blood
+        let images = [
+        'url("/img/blood6.png")',
+        'url("/img/blood5.png")',
+        'url("/img/blood7.png")',
+        'url("/img/blood8.png")',
+        ]
+    
+        let blood = document.createElement('span')
+        blood.classList.add('blood')
+
+         // Add Random blood images
+        let bg = images[Math.floor (Math.random() * images.length)]
+        blood.style.backgroundImage = bg;
+
+        blood.style.left = Math.random() * innerWidth+'px'
+        blood.style.top = Math.random() * innerHeight+'px'
+        body.appendChild(blood)
+
+        //remove Bullets and Blood after 4s
+        setTimeout(() => {
+            bullet.remove()
+            blood.remove() 
+        }, 4000);
+    })
+    </script>
+</body>
+</html>
